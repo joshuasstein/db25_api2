@@ -1,0 +1,74 @@
+{
+    "table_info": {
+        "name": "db25_projects",
+        "comment": "This JSON Defines the Projects class",
+        "columns": {
+            "project_id": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "INT",
+                    "size": null
+                },
+                "primary_key": true,
+                "nullable": false,
+                "autoincrement": true
+            },
+            "project_name": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "VARCHAR",
+                    "size": 100
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+            },
+            "project_description": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "VARCHAR",
+                    "size": 300
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+            },
+            "start_date": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "DATE",
+                    "size": null
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+            },
+            "end_date": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "DATE",
+                    "size": null
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+            },
+            "notes": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "VARCHAR",
+                    "size": null
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+            }
+        }
+    }
+}

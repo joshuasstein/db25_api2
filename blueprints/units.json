@@ -1,0 +1,96 @@
+{
+    "table_info": {
+        "name": "db25_units",
+        "comment": "This JSON Defines the Units class",
+        "columns": {
+            "unit_id": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "INT",
+                    "size": null
+                },
+                "primary_key": true,
+                "nullable": false,
+                "autoincrement": true
+            },
+            "unit_name": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "VARCHAR",
+                    "size": 50
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+            },
+            "unit_type": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "VARCHAR",
+                    "size": 100
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+            },
+            "symbol": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "VARCHAR",
+                    "size": 50
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+            },
+            "unit_definition": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "VARCHAR",
+                    "size": 500
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+            },
+            "base_standard": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "VARCHAR",
+                    "size": 100
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+            },
+            "conversion_presentation": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "VARCHAR",
+                    "size": 100
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+            },
+            "conversion_content": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "VARCHAR",
+                    "size": 100
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+            }
+        }
+    }
+}

@@ -1,0 +1,30 @@
+{
+    "table_info": {
+        "name": "db25_test_table",
+        "comment": "This JSON Defines the Duration class",
+        "columns": {
+            "test_table_id": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "INT",
+                    "size": null
+                },
+                "primary_key": true,
+                "nullable": false,
+                "autoincrement": true
+            },
+            "test_name": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "VARCHAR",
+                    "size": 50
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+            }
+        }
+    }
+}

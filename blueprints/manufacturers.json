@@ -1,0 +1,41 @@
+{
+    "table_info": {
+        "name": "db25_manufacturers",
+        "comment": "This JSON Defines the Manufacturers table",
+        "columns": {
+            "manufacturer_id": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "INT",
+                    "size": null
+                },
+                "primary_key": true,
+                "nullable": false,
+                "autoincrement": true
+            },
+            "manufacturer_name": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "VARCHAR",
+                    "size": 255
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+            },
+            "manufacturer_code": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "VARCHAR",
+                    "size": 8
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+            }
+        }
+    }
+}

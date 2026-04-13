@@ -1,0 +1,184 @@
+{
+    "table_info": {
+        "name": "db25_loads",
+        "comment": "This JSON Defines the Load class",
+        "columns": {
+            "load_id": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "INT",
+                    "size": null
+                },
+                "primary_key": true,
+                "nullable": false,
+                "autoincrement": true
+            },
+            "load_description": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "VARCHAR",
+                    "size": 300
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+            },
+            "raw_data_table": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "VARCHAR",
+                    "size": 100
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+            },
+            "field_name": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "VARCHAR",
+                    "size": 100
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+            },
+            "project_name": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "VARCHAR",
+                    "size": 100
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+            },
+            "site_name": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "VARCHAR",
+                    "size": 100
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+            },
+            "system_name": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "VARCHAR",
+                    "size": 100
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+            },
+            "subsystem_name": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "VARCHAR",
+                    "size": 100
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+            },
+            "module_id": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "INT",
+                    "size": null
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+            },
+            "testpad_name": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "VARCHAR",
+                    "size": 100
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+            },
+            "unit_name": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "VARCHAR",
+                    "size": 100
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+            },
+            "aggregation_name": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "VARCHAR",
+                    "size": 100
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+            },
+            "allignment_name": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "VARCHAR",
+                    "size": 100
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+            },
+            "label_name": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "VARCHAR",
+                    "size": 100
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+            },
+            "duration_name": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "VARCHAR",
+                    "size": 100
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+            },
+            "raw_schema": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "VARCHAR",
+                    "size": 100
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+	    }
+        }
+    }
+}

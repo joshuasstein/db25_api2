@@ -1,0 +1,217 @@
+{
+    "table_info": {
+        "name": "db25_module_models",
+        "comment": "This JSON Defines the Models table",
+        "columns": {
+            "module_model_id": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "INT",
+                    "size": null
+                },
+                "primary_key": true,
+                "nullable": false,
+                "autoincrement": true
+            },
+            "manufacturer_name": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "VARCHAR",
+                    "size": 255
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+            },
+            "manufacturer_id": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "INT",
+                    "size": null
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+            },
+            "module_model_name": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "VARCHAR",
+                    "size": 255
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+            },
+            "power_rating_W": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "FLOAT",
+                    "size": null
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+            },
+            "aperture_area_m2": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "FLOAT",
+                    "size": null
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+            },
+            "power_tempco_per_degC": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "FLOAT",
+                    "size": null
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+            },
+            "Voc_tempco_per_degC": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "FLOAT",
+                    "size": null
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+            },
+            "Isc_tempco_per_degC": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "FLOAT",
+                    "size": null
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+            },
+            "Voc_V": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "FLOAT",
+                    "size": null
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+            },
+            "Isc_A": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "FLOAT",
+                    "size": null
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+            },
+            "Vmp_V": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "FLOAT",
+                    "size": null
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+            },
+            "Imp_A": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "FLOAT",
+                    "size": null
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+            },
+            "module_length_mm": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "FLOAT",
+                    "size": null
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+            },
+            "module_width_mm": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "FLOAT",
+                    "size": null
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+            },
+            "module_depth_mm": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "FLOAT",
+                    "size": null
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+            },
+            "NOCT_degC": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "FLOAT",
+                    "size": null
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+            },
+            "number_cells_per_module": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "INT",
+                    "size": null
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+            },
+            "number_cell_strings": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "INT",
+                    "size": null
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+            }
+        }
+    }
+}

@@ -1,0 +1,1307 @@
+openapi: 3.0.0
+info:
+  title: db25_api2
+  version: 0.0.4
+
+components:
+  securitySchemes:
+    bearer:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      x-bearerInfoFunc: app3.bearer_auth
+
+paths:
+  /login:
+    post:
+      summary: User login
+      operationId: app3.login
+      security: []  # Override global security - no auth required for login
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+              required:
+                - username
+                - password
+      responses:
+        '200':
+          description: JWT access token
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  access_token:
+                    type: string
+        '401':
+          description: Invalid credentials
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+
+  /v1/systems:
+    get:
+      summary: Retrieve a list of all systems
+      operationId: blueprints.systems.get_all_systems
+      security:
+        - bearer: []
+      responses:
+        '200':
+          description: A list of systems
+          content:
+            text/csv:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    system_id:
+                      type: integer
+                    system_name:
+                      type: string
+                    system_description:
+                      type: string
+                    active:
+                      type: string
+                    module_model_id:
+                      type: integer
+                      nullable: true
+                    system_owner:
+                      type: string
+                    number_of_strings:
+                      type: integer
+                      nullable: true
+                    system_mounting:
+                      type: string
+                      nullable: true
+                    fixed_azimuth_deg:
+                      type: number
+                      nullable: true
+                    fixed_tilt_deg:
+                      type: number
+                      nullable: true
+                    axis_azimuth_deg:
+                      type: number
+                      nullable: true
+                    axis_tilt_deg:
+                      type: number
+                      nullable: true
+                    tilt_max_deg:
+                      type: number
+                      nullable: true
+                    start_date:
+                      type: string
+                      format: date-time 
+                      nullable: true
+                    end_date:
+                      type: string
+                      format: date-time
+                      nullable: true
+                    gpoa_testpad_name:
+                      type: string
+                      nullable: true
+                    temp_testpad_name:
+                      type: string
+                      nullable: true
+                    wind_testpad_name:
+                      type: string
+                      nullable: true
+                    testpad_name:
+                      type: string
+                      nullable: true
+                    notes:
+                      type: string
+                      nullable: true
+
+  /v1/systems/{system_name}:
+    get:
+      summary: Retrieve metadata for a specific system
+      operationId: blueprints.systems.get_system_data
+      security:
+        - bearer: []
+      parameters:
+        - name: system_name
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A list of systems
+          content:
+            text/csv:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    system_id:
+                      type: integer
+                    system_name:
+                      type: string
+                    system_description:
+                      type: string
+                    active:
+                      type: string
+                    module_model_id:
+                      type: integer
+                      nullable: true
+                    system_owner:
+                      type: string
+                    number_of_strings:
+                      type: integer
+                      nullable: true
+                    system_mounting:
+                      type: string
+                      nullable: true
+                    fixed_azimuth_deg:
+                      type: number
+                      nullable: true
+                    fixed_tilt_deg:
+                      type: number
+                      nullable: true
+                    axis_azimuth_deg:
+                      type: number
+                      nullable: true
+                    axis_tilt_deg:
+                      type: number
+                      nullable: true
+                    tilt_max_deg:
+                      type: number
+                      nullable: true
+                    start_date:
+                      type: string
+                      format: date-time 
+                      nullable: true
+                    end_date:
+                      type: string
+                      format: date-time
+                      nullable: true
+                    gpoa_testpad_name:
+                      type: string
+                      nullable: true
+                    temp_testpad_name:
+                      type: string
+                      nullable: true
+                    wind_testpad_name:
+                      type: string
+                      nullable: true
+                    testpad_name:
+                      type: string
+                      nullable: true
+                    notes:
+                      type: string
+                      nullable: true
+        '401':
+          description: Unauthorized
+        '404':
+          description: System not found
+
+  /v1/systems/{system_name}/number_of_modules:
+    get:
+      summary: Retrieve the number of modules for a specific system
+      operationId: blueprints.systems.get_number_of_modules_per_system
+      security:
+        - bearer: []
+      parameters:
+        - name: system_name
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response with the number of modules
+          content:
+            application/json:
+              schema:
+                type: object
+        '404':
+          description: System not found
+
+  /v1/systems/{system_name}/measurements/last_measurement_date:
+    get:
+      summary: Get the last measurement date for a system
+      operationId: blueprints.systems.get_last_measurement_date
+      security:
+        - bearer: []
+      parameters:
+        - name: system_name
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response with the last measurement date
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  last_measurement_date:
+                    type: string
+                    format: date-time
+        '404':
+          description: System not found
+        '500':
+          description: Error response
+
+  /v1/systems/{system_name}/dc_capacity:
+    get:
+      summary: Retrieve the DC capacity for a specific system
+      operationId: blueprints.systems.get_system_dc_capacity
+      security:
+        - bearer: []
+      parameters:
+        - name: system_name
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response with the DC capacity
+          content:
+            application/json:
+              schema:
+                type: object
+        '404':
+          description: System not found
+
+  /v1/systems/{system_name}/measurements:
+    get:
+      summary: Get system measurements
+      operationId: blueprints.systems.get_system_measurements
+      security:
+        - bearer: []
+      parameters:
+        - name: start_date
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date-time
+        - name: end_date
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date-time
+        - name: subsystem_names
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        - name: label_names
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            text/csv:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    measurement_date:
+                      type: string
+                      format: date-time
+                    measurement_value:
+                      type: number
+                    label_subsystem:
+                      type: string
+                    system_name:
+                      type: string
+        '500':
+          description: Error response
+
+  /v1/systems/{system_name}/subsystems:
+    get:
+      summary: Get subsystems from system
+      operationId: blueprints.systems.get_subsystem_data_from_system
+      security:
+        - bearer: []
+      parameters:
+        - name: system_name
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    subsystem_name:
+                      type: string
+                    subsystem_description:
+                      type: string
+                      nullable: true
+                    system_name:
+                      type: string
+                      nullable: true
+                    strings_per_subsystem:
+                      type: integer
+                      nullable: true
+                    modules_per_string:
+                      type: integer
+                      nullable: true
+                    raw_data_table:
+                      type: string
+                      nullable: true
+                    raw_data_field:
+                      type: string
+                      nullable: true
+        '500':
+          description: Error response
+
+  /v1/systems/{system_name}/date_range:
+    get:
+      summary: Get measurement date range from system
+      operationId: blueprints.systems.get_measurement_date_range
+      security:
+        - bearer: []
+      parameters:
+        - name: system_name
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  start_date:
+                    type: string
+                    format: date-time
+                  end_date:
+                    type: string
+                    format: date-time
+        '500':
+          description: Error response        
+
+  /v1/testpads:
+    get:
+      summary: Retrieve a list of all testpads
+      operationId: blueprints.testpads.get_all_testpads
+      security:
+        - bearer: []
+      responses:
+        '200':
+          description: A list of testpads
+          content:
+            text/csv:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    testpad_name:
+                      type: string
+                    testpad_common_name:
+                      type: string
+                    site_name:
+                      type: string
+                    testpad_description:
+                      type: string
+
+  /v1/testpads/{testpad_name}:
+    get:
+      summary: Retrieve metadata for a specific testpad
+      operationId: blueprints.testpads.get_testpad_data
+      security:
+        - bearer: []
+      parameters:
+        - name: testpad_name
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  testpad_name:
+                    type: string
+                  testpad_common_name:
+                    type: string
+                  site_name:
+                    type: string
+                  testpad_description:
+                    type: string
+        '401':
+          description: Unauthorized
+        '404':
+          description: Testpad not found
+
+  /v1/testpads/{testpad_name}/measurements:
+    get:
+      summary: Get testpad measurements
+      operationId: blueprints.testpads.get_testpad_measurements
+      security:
+        - bearer: []
+      parameters:
+        - name: start_date
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date-time
+        - name: end_date
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date-time
+        - name: label_names
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            text/csv:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    measurement_date:
+                      type: string
+                      format: date-time
+                    measurement_value:
+                      type: number
+                    # testpad_name:
+                    #   type: string
+        '500':
+          description: Error response
+  
+  /v1/tetpads/{testpad_name}/date_range:
+    get:
+      summary: Get measurement date range from testpad
+      operationId: blueprints.testpads.get_measurement_date_range
+      security:
+        - bearer: []
+      parameters:
+        - name: testpad_name
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  start_date:
+                    type: string
+                    format: date-time
+                  end_date:
+                    type: string
+                    format: date-time
+        '500':
+          description: Error response      
+
+  /v1/units:
+    get:
+      summary: Retrieve a list of all units
+      operationId: blueprints.units.get_all_units
+      security:
+        - bearer: []
+      responses:
+        '200':
+          description: A list of units
+          content:
+            text/csv:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    unitID:
+                      type: integer
+                    unit_label:
+                      type: string
+                    unit_type:
+                      type: string
+                      nullable: true
+                    symbol:
+                      type: string
+                      nullable: true
+                    unit_definition:
+                      type: string
+                      nullable: true
+                    base_standard:
+                      type: string
+                      nullable: true
+
+  /v1/units/{unit_id}:
+    get:
+      summary: Retrieve details for a specific unit
+      operationId: blueprints.units.get_unit_data
+      security:
+        - bearer: []
+      parameters:
+        - name: unit_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  unitID:
+                    type: integer
+                  unit_label:
+                    type: string
+                  unit_type:
+                    type: string
+                    nullable: true
+                  symbol:
+                    type: string
+                    nullable: true
+                  unit_definition:
+                    type: string
+                    nullable: true
+                  base_standard:
+                    type: string
+                    nullable: true
+        '401':
+          description: Unauthorized
+        '404':
+          description: Unit not found
+
+  /v1/aggregations:
+    get:
+      summary: Retrieve a list of all aggregations
+      operationId: blueprints.aggregations.get_all_aggregations
+      security:
+        - bearer: []
+      responses:
+        '200':
+          description: A list of aggregations
+          content:
+            text/csv:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    aggregationID:
+                      type: integer
+                    aggregation_name:
+                      type: string
+                    aggregation_description:
+                      type: string
+
+  /v1/aggregations/{aggregation_id}:
+    get:
+      summary: Retrieve details for a specific aggregation
+      operationId: blueprints.aggregations.get_aggregation_data
+      security:
+        - bearer: []
+      parameters:
+        - name: aggregation_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  aggregationID:
+                    type: integer
+                  aggregation_name:
+                    type: string
+                  aggregation_description:
+                    type: string
+        '401':
+          description: Unauthorized
+        '404':
+          description: Aggregation not found
+
+  /v1/alignments:
+    get:
+      summary: Retrieve a list of all alignments
+      operationId: blueprints.alignments.get_all_alignments
+      security:
+        - bearer: []
+      responses:
+        '200':
+          description: A list of alignments
+          content:
+            text/csv:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    alignmentID:
+                      type: integer
+                    alignment_name:
+                      type: string
+                    alignment_description:
+                      type: string
+
+  /v1/alignments/{alignment_id}:
+    get:
+      summary: Retrieve details for a specific alignment
+      operationId: blueprints.alignments.get_alignment_data
+      security:
+        - bearer: []
+      parameters:
+        - name: alignment_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  alignmentID:
+                    type: integer
+                  alignment_name:
+                    type: string
+                  alignment_description:
+                    type: string
+        '401':
+          description: Unauthorized
+        '404':
+          description: Alignment not found
+
+  /v1/durations:
+    get:
+      summary: Retrieve a list of all durations
+      operationId: blueprints.durations.get_all_durations
+      security:
+        - bearer: []
+      responses:
+        '200':
+          description: A list of durations
+          content:
+            text/csv:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    durationID:
+                      type: integer
+                    duration_name:
+                      type: string
+                    duration_description:
+                      type: string
+
+  /v1/durations/{duration_id}:
+    get:
+      summary: Retrieve details for a specific duration
+      operationId: blueprints.durations.get_duration_data
+      security:
+        - bearer: []
+      parameters:
+        - name: duration_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  durationID:
+                    type: integer
+                  duration_name:
+                    type: string
+                  duration_description:
+                    type: string
+        '401':
+          description: Unauthorized
+        '404':
+          description: Duration not found
+
+  /v1/labels:
+    get:
+      summary: Retrieve a list of all labels
+      operationId: blueprints.labels.get_all_labels
+      security:
+        - bearer: []
+      responses:
+        '200':
+          description: A list of labels
+          content:
+            text/csv:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    labelID:
+                      type: integer
+                    label_name:
+                      type: string
+                    label_description:
+                      type: string
+
+  /v1/labels/{label_id}:
+    get:
+      summary: Retrieve details for a specific label
+      operationId: blueprints.labels.get_label_data
+      security:
+        - bearer: []
+      parameters:
+        - name: label_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  labelID:
+                    type: integer
+                  label_name:
+                    type: string
+                  label_description:
+                    type: string
+        '401':
+          description: Unauthorized
+        '404':
+          description: Label not found
+
+  /v1/manufacturers:
+    get:
+      summary: Retrieve a list of all manufacturers
+      operationId: blueprints.manufacturers.get_all_manufacturers
+      security:
+        - bearer: []
+      responses:
+        '200':
+          description: A list of manufacturers
+          content:
+            text/csv:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    manufacturerID:
+                      type: integer
+                    manufacturer_name:
+                      type: string
+                    manufacturer_code:
+                      type: string
+                      nullable: true
+
+  /v1/manufacturers/{manufacturer_id}:
+    get:
+      summary: Retrieve details for a specific manufacturer
+      operationId: blueprints.manufacturers.get_manufacturer_data
+      security:
+        - bearer: []
+      parameters:
+        - name: manufacturer_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  manufacturerID:
+                    type: integer
+                  manufacturer_name:
+                    type: string
+                  manufacturer_code:
+                    type: string
+                    nullable: true
+        '401':
+          description: Unauthorized
+        '404':
+          description: Manufacturer not found
+
+  /v1/module_models:
+    get:
+      summary: Retrieve a list of all module models
+      operationId: blueprints.module_models.get_all_module_models
+      security:
+        - bearer: []
+      responses:
+        '200':
+          description: A list of module models
+          content:
+            text/csv:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    module_modelID:
+                      type: integer
+                    manufacturer:
+                      type: string
+                    model_name:
+                      type: string
+                    power_rating_W:
+                      type: number
+                      nullable: true
+                    aperture_area:
+                      type: number
+                      nullable: true
+                    power_tempco_degC:
+                      type: number
+                      nullable: true
+                    num_cells:
+                      type: integer
+                      nullable: true
+
+  /v1/module_models/{module_model_id}:
+    get:
+      summary: Retrieve details for a specific module model
+      operationId: blueprints.module_models.get_module_model_data
+      security:
+        - bearer: []
+      parameters:
+        - name: module_model_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  module_modelID:
+                    type: integer
+                  manufacturer:
+                    type: string
+                  model_name:
+                    type: string
+                  power_rating_W:
+                    type: number
+                    nullable: true
+                  aperture_area:
+                    type: number
+                    nullable: true
+                  power_tempco_degC:
+                    type: number
+                    nullable: true
+                  num_cells:
+                    type: integer
+                    nullable: true
+        '401':
+          description: Unauthorized
+        '404':
+          description: Module model not found
+
+  /v1/modules:
+    get:
+      summary: Retrieve a list of all modules
+      operationId: blueprints.modules.get_all_modules
+      security:
+        - bearer: []
+      responses:
+        '200':
+          description: A list of modules
+          content:
+            text/csv:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    moduleID:
+                      type: integer
+                    pselID:
+                      type: integer
+                    moduleAltID:
+                      type: integer
+                      nullable: true
+                    serial_number:
+                      type: string
+                      nullable: true
+                    date_received:
+                      type: string
+                      format: date-time
+                      nullable: true
+                    source:
+                      type: string
+                      nullable: true
+
+  /v1/modules/{module_id}:
+    get:
+      summary: Retrieve details for a specific module
+      operationId: blueprints.modules.get_module_data
+      security:
+        - bearer: []
+      parameters:
+        - name: module_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  moduleID:
+                    type: integer
+                  pselID:
+                    type: integer
+                  moduleAltID:
+                    type: integer
+                    nullable: true
+                  serial_number:
+                    type: string
+                    nullable: true
+                  date_received:
+                    type: string
+                    format: date-time
+                    nullable: true
+                  source:
+                    type: string
+                    nullable: true
+        '401':
+          description: Unauthorized
+        '404':
+          description: Module not found
+
+  /v1/projects:
+    get:
+      summary: Retrieve a list of all projects
+      operationId: blueprints.projects.get_all_projects
+      security:
+        - bearer: []
+      responses:
+        '200':
+          description: A list of projects
+          content:
+            text/csv:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    projectID:
+                      type: integer
+                    project_name:
+                      type: string
+                    project_description:
+                      type: string
+                    start_date:
+                      type: string
+                      nullable: true
+                      format: date-time
+                    end_date:
+                      type: string
+                      nullable: true
+                      format: date-time
+
+  /v1/projects/{project_id}:
+    get:
+      summary: Retrieve details for a specific project
+      operationId: blueprints.projects.get_project_data
+      security:
+        - bearer: []
+      parameters:
+        - name: project_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  projectID:
+                    type: integer
+                  project_name:
+                    type: string
+                  project_description:
+                    type: string
+                  start_date:
+                    type: string
+                    nullable: true
+                    format: date-time
+                  end_date:
+                    type: string
+                    nullable: true
+                    format: date-time
+        '401':
+          description: Unauthorized
+        '404':
+          description: Project not found
+
+  /v1/sites:
+    get:
+      summary: Retrieve a list of all sites
+      operationId: blueprints.sites.get_all_sites
+      security:
+        - bearer: []
+      responses:
+        '200':
+          description: A list of sites
+          content:
+            text/csv:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    siteID:
+                      type: integer
+                    site_name:
+                      type: string
+                    site_description:
+                      type: string
+                      nullable: true
+                    latitude_deg:
+                      type: number
+                    longitude_deg:
+                      type: number
+                    elevation_m:
+                      type: number
+                    address_physical:
+                      type: string
+                      nullable: true
+                    address_mailing:
+                      type: string
+                      nullable: true
+                    tz_offset:
+                      type: string
+                      nullable: true
+
+  /v1/sites/{site_id}:
+    get:
+      summary: Retrieve details for a specific site
+      operationId: blueprints.sites.get_site_data
+      security:
+        - bearer: []
+      parameters:
+        - name: site_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                    siteID:
+                      type: integer
+                    site_name:
+                      type: string
+                    site_description:
+                      type: string
+                      nullable: true
+                    latitude_deg:
+                      type: number
+                    longitude_deg:
+                      type: number
+                    elevation_m:
+                      type: number
+                    address_physical:
+                      type: string
+                      nullable: true
+                    address_mailing:
+                      type: string
+                      nullable: true
+                    tz_offset:
+                      type: string
+                      nullable: true
+        '401':
+          description: Unauthorized
+        '404':
+          description: Site not found
+  /v1/loads:
+    get:
+      summary: Retrieve a list of all loads
+      operationId: blueprints.loads.get_all_loads
+      security:
+        - bearer: []
+      responses:
+        '200':
+          description: A list of loads
+          content:
+            text/csv:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    loadID:
+                      type: integer
+                    load_description:
+                      type: string
+                    raw_data_table:
+                      type: string
+                    field_name:
+                      type: string
+                    project_name:
+                      type: string
+                    site_name:
+                      type: string
+                    system_name:
+                      type: string
+                    subsystem_name:
+                      type: string
+                    moduleID:
+                      type: integer
+                    testpad_name:
+                      type: string
+                    unit_name:
+                      type: string
+                    aggregation_name:
+                      type: string
+                    alignment_name:
+                      type: string
+                    label_name:
+                      type: string
+                    duration_description:
+                      type: string
+
+  /v1/loads/{load_id}:
+    get:
+      summary: Retrieve details for a specific load
+      operationId: blueprints.loads.get_load_data
+      security:
+        - bearer: []
+      parameters:
+        - name: load_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  loadID:
+                    type: integer
+                  load_description:
+                    type: string
+                  raw_data_table:
+                    type: string
+                  field_name:
+                    type: string
+                  project_name:
+                    type: string
+                  site_name:
+                    type: string
+                  system_name:
+                    type: string
+                  subsystem_name:
+                    type: string
+                  moduleID:
+                    type: integer
+                  testpad_name:
+                    type: string
+                  unit_name:
+                    type: string
+                  aggregation_name:
+                    type: string
+                  alignment_name:
+                    type: string
+                  label_name:
+                    type: string
+                  duration_description:
+                    type: string
+        '401':
+          description: Unauthorized
+        '404':
+          description: Load not found

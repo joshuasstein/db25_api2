@@ -1,0 +1,228 @@
+{
+    "table_info": {
+        "name": "db25_systems",
+        "comment": "This JSON Defines the Systems class",
+        "columns": {
+            "system_id": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "INT",
+                    "size": null
+                },
+                "primary_key": true,
+                "nullable": false,
+                "autoincrement": true
+            },
+            "system_name": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "VARCHAR",
+                    "size": 100
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+            },
+            "system_description": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "VARCHAR",
+                    "size": null
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+            },
+            "active": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "VARCHAR",
+                    "size": 1
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+            },
+            "module_model_id": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "INT",
+                    "size": null
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+            },
+            "system_owner": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "VARCHAR",
+                    "size": 100
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+            },
+            "number_of_strings": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "INT",
+                    "size": null
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+            },
+            "system_mounting": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "VARCHAR",
+                    "size": 100
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+            },
+            "fixed_azimuth_deg": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "FLOAT",
+                    "size": null
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+            },
+            "fixed_tilt_deg": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "FLOAT",
+                    "size": null
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+            },
+            "axis_azimuth_deg": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "FLOAT",
+                    "size": null
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+            },
+            "axis_tilt_deg": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "FLOAT",
+                    "size": null
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+            },
+            "tilt_max_deg": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "FLOAT",
+                    "size": null
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+            },
+            "start_date": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "DATE",
+                    "size": null
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+            },
+            "end_date": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "DATE",
+                    "size": null
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+            },
+            "gpoa_testpad_name": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "VARCHAR",
+                    "size": 100
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+            },
+            "temp_testpad_name": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "VARCHAR",
+                    "size": 100
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+            },
+            "wind_testpad_name": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "VARCHAR",
+                    "size": 100
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+            },
+            "testpad_name": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "VARCHAR",
+                    "size": 100
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+            },
+            "notes": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "VARCHAR",
+                    "size": 300
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+            }
+        }
+    }
+}

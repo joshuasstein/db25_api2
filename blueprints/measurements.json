@@ -1,0 +1,173 @@
+{
+    "table_info": {
+        "name": "db25_ts_measurements",
+        "comment": "This JSON Defines the ts_measurements table",
+        "columns": {
+            "ts_measurement_id": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "INT",
+                    "size": null
+                },
+                "primary_key": true,
+                "nullable": false,
+                "autoincrement": true
+            },
+            "project_id": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "INT",
+                    "size": null
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+            },
+            "site_id": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "INT",
+                    "size": null
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+            },
+            "system_id": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "INT",
+                    "size": null
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+            },
+            "subsystem_id": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "INT",
+                    "size": null
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+            },
+            "module_id": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "INT",
+                    "size": null
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+            },
+            "testpad_id": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "INT",
+                    "size": null
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+            },
+            "unit_id": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "INT",
+                    "size": null
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+            },
+            "label_id": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "INT",
+                    "size": null
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+            },
+            "aggregation_id": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "INT",
+                    "size": null
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+            },
+            "alignment_id": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "INT",
+                    "size": null
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+            },
+            "duration_id": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "INT",
+                    "size": null
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+            },
+            "measurement_date": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "DATETIME",
+                    "size": null
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+            },
+            "measurement_value": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "FLOAT",
+                    "size": null
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+            },
+            "load_id": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "INT",
+                    "size": null
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+            }
+        }
+    }
+}

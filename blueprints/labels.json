@@ -1,0 +1,53 @@
+{
+    "table_info": {
+        "name": "db25_labels",
+        "comment": "This JSON Defines the Labels class",
+        "columns": {
+            "label_id": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "INT",
+                    "size": null
+                },
+                "primary_key": true,
+                "nullable": false,
+                "autoincrement": true
+            },
+            "label_name": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "VARCHAR",
+                    "size": 50
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+            },
+            "label_description": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "VARCHAR",
+                    "size": 100
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+            },
+            "notes": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "VARCHAR",
+                    "size": 255
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+            }
+
+        }
+    }
+}

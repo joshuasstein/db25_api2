@@ -1,0 +1,107 @@
+{
+    "table_info": {
+        "name": "db25_sites",
+        "comment": "This JSON Defines the Sites class",
+        "columns": {
+            "site_id": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "INT",
+                    "size": null
+                },
+                "primary_key": true,
+                "nullable": false,
+                "autoincrement": true
+            },
+            "site_name": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "VARCHAR",
+                    "size": 100
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+            },
+            "site_description": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "VARCHAR",
+                    "size": 500
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+            },
+            "latitude_deg": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "FLOAT",
+                    "size": null
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+            },
+            "longitude_deg": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "FLOAT",
+                    "size": null
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+            },
+            "elevation_m": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "FLOAT",
+                    "size": null
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+            },
+            "address_physical": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "VARCHAR",
+                    "size": 200
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+            },
+            "address_mailing": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "VARCHAR",
+                    "size": 200
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+            },
+            "tz_offset": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "VARCHAR",
+                    "size": 20
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+	    }
+        }
+    }
+}

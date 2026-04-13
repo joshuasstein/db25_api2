@@ -1,0 +1,41 @@
+{
+    "table_info": {
+        "name": "db25_aggregations",
+        "comment": "This JSON Defines the Aggregation class",
+        "columns": {
+            "aggregation_id": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "INT",
+                    "size": null
+                },
+                "primary_key": true,
+                "nullable": false,
+                "autoincrement": true
+            },
+            "aggregation_name": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "VARCHAR",
+                    "size": 50
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+            },
+            "aggregation_description": {
+                "keep": true,
+                "name_change": null,
+                "datatype": {
+                    "type": "VARCHAR",
+                    "size": 50
+                },
+                "primary_key": false,
+                "nullable": true,
+                "autoincrement": false
+            }
+        }
+    }
+}
