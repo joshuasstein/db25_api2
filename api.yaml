@@ -520,7 +520,7 @@ paths:
         '500':
           description: Error response
   
-  /v1/tetpads/{testpad_name}/date_range:
+  /v1/testpads/{testpad_name}/date_range:
     get:
       summary: Get measurement date range from testpad
       operationId: blueprints.testpads.get_measurement_date_range
