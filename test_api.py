@@ -384,14 +384,17 @@ def run_tests(base_url: str, username: str, password: str) -> None:
     ok, tp_rows = check("GET /v1/testpads — list", resp, check_nonempty=True)
     testpad_name = first_value(tp_rows, "testpad_name") if ok else None
 
+    # Use FT_Met for sub-resource tests — it has measurement data.
+    DATA_TESTPAD = "FT_Met"
+
     if testpad_name:
         tn = testpad_name
 
         resp = get(authed, f"{base_url}/v1/testpads/{tn}")
         check(f"GET /v1/testpads/{tn} — detail", resp)
 
-        resp = get(authed, f"{base_url}/v1/testpads/{tn}/date_range")
-        ok_dr, tp_range = check(f"GET /v1/testpads/{tn}/date_range", resp)
+        resp = get(authed, f"{base_url}/v1/testpads/{DATA_TESTPAD}/date_range")
+        ok_dr, tp_range = check(f"GET /v1/testpads/{DATA_TESTPAD}/date_range", resp)
 
         start_dt = end_dt = None
         if ok_dr and isinstance(tp_range, dict):
@@ -399,18 +402,16 @@ def run_tests(base_url: str, username: str, password: str) -> None:
             end_dt   = tp_range.get("end_date")
 
         if start_dt and end_dt:
-            resp = get(authed, f"{base_url}/v1/testpads/{tn}/measurements",
-                       params={"start_date": start_dt, "end_date": end_dt})
-            check(f"GET /v1/testpads/{tn}/measurements (date range)", resp)
-        else:
-            # Try a generic recent window even without a confirmed range
             import datetime
-            now = datetime.datetime.utcnow()
-            end_dt_fb   = now.isoformat() + "Z"
-            start_dt_fb = (now - datetime.timedelta(days=30)).isoformat() + "Z"
-            resp = get(authed, f"{base_url}/v1/testpads/{tn}/measurements",
-                       params={"start_date": start_dt_fb, "end_date": end_dt_fb})
-            check(f"GET /v1/testpads/{tn}/measurements (last 30 days)", resp)
+            try:
+                dt = datetime.datetime.fromisoformat(start_dt.replace("Z", "+00:00"))
+                end_dt_1d = (dt + datetime.timedelta(days=1)).isoformat()
+            except ValueError:
+                end_dt_1d = end_dt
+            resp = get(authed, f"{base_url}/v1/testpads/{DATA_TESTPAD}/measurements",
+                       params={"start_date": start_dt, "end_date": end_dt_1d},
+                       timeout=120)
+            check(f"GET /v1/testpads/{DATA_TESTPAD}/measurements (1-day window from start)", resp)
 
         # 404 for bogus testpad name
         resp = get(authed, f"{base_url}/v1/testpads/__no_such_testpad__")
