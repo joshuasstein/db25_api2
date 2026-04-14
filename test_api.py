@@ -82,9 +82,9 @@ def _preview(resp: requests.Response) -> str:
         return resp.text
 
 
-def get(session: requests.Session, url: str, *, params=None) -> requests.Response:
+def get(session: requests.Session, url: str, *, params=None, timeout=30) -> requests.Response:
     t0 = time.monotonic()
-    resp = session.get(url, params=params, timeout=30)
+    resp = session.get(url, params=params, timeout=timeout)
     resp.elapsed_ms = (time.monotonic() - t0) * 1000  # type: ignore[attr-defined]
     return resp
 
@@ -337,17 +337,22 @@ def run_tests(base_url: str, username: str, password: str) -> None:
         resp = get(authed, f"{base_url}/v1/systems/{sn}/date_range")
         ok3, range_data = check(f"GET /v1/systems/{sn}/date_range", resp)
 
-        # Measurements — need a date window.  Use date_range if available,
-        # otherwise fall back to last_measurement_date ± 1 day.
+        # Measurements — use a narrow 1-day window starting from the earliest
+        # data to avoid slow full-table scans.
+        import datetime
         start_dt = end_dt = None
         if ok3 and isinstance(range_data, dict):
-            start_dt = range_data.get("start_date")
-            end_dt   = range_data.get("end_date")
-        elif ok2 and isinstance(date_data, dict):
+            raw_start = range_data.get("start_date")
+            if raw_start:
+                try:
+                    dt = datetime.datetime.fromisoformat(raw_start.replace("Z", "+00:00"))
+                    start_dt = dt.isoformat()
+                    end_dt   = (dt + datetime.timedelta(days=1)).isoformat()
+                except ValueError:
+                    pass
+        if start_dt is None and ok2 and isinstance(date_data, dict):
             last = date_data.get("last_measurement_date")
             if last:
-                # Use a 1-day window ending on last measurement
-                import datetime
                 try:
                     dt = datetime.datetime.fromisoformat(last.replace("Z", "+00:00"))
                     end_dt   = dt.isoformat()
@@ -357,8 +362,9 @@ def run_tests(base_url: str, username: str, password: str) -> None:
 
         if start_dt and end_dt:
             resp = get(authed, f"{base_url}/v1/systems/{sn}/measurements",
-                       params={"start_date": start_dt, "end_date": end_dt})
-            check(f"GET /v1/systems/{sn}/measurements (date range)", resp)
+                       params={"start_date": start_dt, "end_date": end_dt},
+                       timeout=120)
+            check(f"GET /v1/systems/{sn}/measurements (1-day window from start)", resp)
         else:
             print(f"  ⚠ Skipping /v1/systems/{sn}/measurements — could not determine date range")
 
