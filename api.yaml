@@ -539,11 +539,13 @@ paths:
                   start_date:
                     type: string
                     format: date-time
+                    nullable: true
                   end_date:
                     type: string
                     format: date-time
+                    nullable: true
         '500':
-          description: Error response      
+          description: Error response
 
   /v1/units:
     get:
