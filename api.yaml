@@ -141,7 +141,7 @@ paths:
         '200':
           description: A list of systems
           content:
-            text/csv:
+            application/json:
               schema:
                 type: array
                 items:

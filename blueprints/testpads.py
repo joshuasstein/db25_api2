@@ -215,15 +215,19 @@ def get_measurement_date_range(testpad_name: str):
     with engine.connect() as conn:
         row = conn.execute(text(sql), params).first()
 
-    # if no data, return empty
+    # if no data, return 200 with nulls (testpad exists, just no measurements)
     if row is None or (row.start_date is None and row.end_date is None):
-        return jsonify({"start_date": None, "end_date": None}), 404
+        return jsonify({"start_date": None, "end_date": None})
 
-    # attach timezone / isoformat
-    start_iso = row.start_date.isoformat() if row.start_date else None
-    end_iso   = row.end_date.isoformat()   if row.end_date   else None
+    # attach timezone if naive, then isoformat
+    def _iso(dt):
+        if dt is None:
+            return None
+        if dt.tzinfo is None:
+            dt = dt.replace(tzinfo=MST)
+        return dt.isoformat()
 
     return jsonify({
-        "start_date": start_iso,
-        "end_date":   end_iso
+        "start_date": _iso(row.start_date),
+        "end_date":   _iso(row.end_date),
     })
